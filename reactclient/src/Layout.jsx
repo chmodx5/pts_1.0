@@ -7,7 +7,6 @@ function App() {
     <>
       <BrowserRouter>
         <header className="bg-gray-400">
-          some header
           <Link to="/">Home</Link>
           <Link to="/items">Items</Link>
         </header>
