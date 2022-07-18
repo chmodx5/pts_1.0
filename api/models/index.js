@@ -52,4 +52,115 @@ db.sequelize.sync({ force: false }).then(() => {
   console.log("Database synced");
 });
 
+//realtionshio customerId belongs to project is
+
+db.customer.hasMany(db.project, {
+  foreignKey: "CustomerId",
+});
+
+//relationship between person and project
+
+db.person.hasMany(db.project, {
+  foreignKey: "AdministratorId",
+  onDelete: "CASCADE",
+});
+db.person.hasMany(db.teamMember, {
+  foreignKey: "UserId",
+  onDelete: "CASCADE",
+});
+db.person.hasMany(db.team, {
+  foreignKey: "TeamLeaderId",
+  onDelete: "CASCADE",
+});
+db.person.hasMany(db.subtask, {
+  foreignKey: "TeamMemberId",
+  onDelete: "CASCADE",
+});
+
+db.task.hasMany(db.predecessor, {
+  foreignKey: "PredecessorId",
+  onDelete: "CASCADE",
+});
+db.predecessor.belongsTo(db.task, {
+  foreignKey: "TaskId",
+  onDelete: "CASCADE",
+});
+db.predecessor.belongsTo(db.task, {
+  foreignKey: "PredecessorId",
+  onDelete: "CASCADE",
+});
+
+db.project.hasMany(db.task, {
+  foreignKey: "ProjectId",
+  onDelete: "CASCADE",
+});
+db.project.belongsTo(db.customer, {
+  foreignKey: "CustomerId",
+  onDelete: "CASCADE",
+});
+db.project.belongsTo(db.person, {
+  foreignKey: "UserId",
+  onDelete: "CASCADE",
+});
+
+db.status.hasMany(db.task, {
+  foreignKey: "StatusId",
+  onDelete: "CASCADE",
+});
+db.status.hasMany(db.subtask, {
+  foreignKey: "StatusId",
+  onDelete: "CASCADE",
+});
+
+db.task.hasMany(db.predecessor, {
+  foreignKey: "TaskId",
+  onDelete: "CASCADE",
+});
+db.task.hasMany(db.subtask, {
+  foreignKey: "TaskId",
+  onDelete: "CASCADE",
+});
+db.task.belongsTo(db.project, {
+  foreignKey: "ProjectId",
+  onDelete: "CASCADE",
+});
+db.task.belongsTo(db.status, {
+  foreignKey: "StatusId",
+  onDelete: "CASCADE",
+});
+
+db.subtask.belongsTo(db.task, {
+  foreignKey: "TaskId",
+  onDelete: "CASCADE",
+});
+db.subtask.belongsTo(db.teamMember, {
+  foreignKey: "TeamMemberId",
+  onDelete: "CASCADE",
+});
+db.subtask.belongsTo(db.status, {
+  foreignKey: "StatusId",
+  onDelete: "CASCADE",
+});
+
+db.team.hasMany(db.teamMember, {
+  foreignKey: "TeamId",
+  onDelete: "CASCADE",
+});
+db.team.hasMany(db.task, {
+  foreignKey: "TeamId",
+  onDelete: "CASCADE",
+});
+db.team.belongsTo(db.person, {
+  foreignKey: "TeamLeaderId",
+  onDelete: "CASCADE",
+});
+db.teamMember.belongsTo(db.team, {
+  foreignKey: "TeamId",
+  onDelete: "CASCADE",
+});
+db.teamMember.belongsTo(db.person, {
+  foreignKey: "UserId",
+  onDelete: "CASCADE",
+});
+
 module.exports = db;
