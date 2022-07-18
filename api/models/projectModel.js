@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Project = sequelize.define(
-    "project",
+    "projects",
     {
       ProjectId: {
         type: DataTypes.INTEGER,
@@ -68,26 +68,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  //add ralationship
-  Project.associate = (models) => {
-    //one project has many tasks
-    Project.hasMany(models.task, {
-      foreignKey: "ProjectId",
-      onDelete: "CASCADE",
-    });
-
-    //belongs to customer
-    Project.belongsTo(models.customer, {
-      foreignKey: "CustomerId",
-      onDelete: "CASCADE",
-    });
-
-    //belongs to person
-    Project.belongsTo(models.person, {
-      foreignKey: "UserId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return Project;
 };

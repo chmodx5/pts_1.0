@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Team = sequelize.define(
-    "team",
+    "teams",
     {
       TeamId: {
         type: DataTypes.INTEGER,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       TeamLeaderId: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           notEmpty: true,
@@ -41,21 +41,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Team.associate = (models) => {
-    Team.hasMany(models.teamMember, {
-      foreignKey: "TeamId",
-      onDelete: "CASCADE",
-    });
-    Team.hasMany(models.task, {
-      foreignKey: "TeamId",
-      onDelete: "CASCADE",
-    });
-
-    //belongs to person
-    Team.belongsTo(models.person, {
-      foreignKey: "TeamLeaderId",
-      onDelete: "CASCADE",
-    });
-  };
-  return Predecessor;
+  return Team;
 };

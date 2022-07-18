@@ -1,34 +1,34 @@
 const db = require("../models");
 
 //creating main controller
-const createProject = async (req, res) => {
-  res.json({ message: "create project" });
+const createCustomer = async (req, res) => {
+  res.json({ message: "create Customer" });
 };
 
-//get all projects
-const getAllProjects = async (req, res) => {
-  res.json({ message: "All projects" });
+//get all Customers
+const getAllCustomers = async (req, res) => {
+  res.json({ message: "All Customers" });
 };
 
-//get project by id
-const getProjectById = async (req, res) => {
-  res.json({ message: "get project by id" });
+//get Customer by id
+const getCustomerById = async (req, res) => {
+  res.json({ message: "get Customer by id" });
 };
 
-//update project
-const updateProject = async (req, res) => {
-  res.json({ message: "update project" });
+//update Customer
+const updateCustomer = async (req, res) => {
+  res.json({ message: "update Customer" });
 };
 
-//delete project
-const deleteProject = async (req, res) => {
-  res.json({ message: "project deleted successfully" });
+//delete Customer
+const deleteCustomer = async (req, res) => {
+  res.json({ message: "Customer deleted successfully" });
 };
 
 module.exports = {
-  createProject,
-  getAllProjects,
-  getProjectById,
-  updateProject,
-  deleteProject,
+  createCustomer,
+  getAllCustomers,
+  getCustomerById,
+  updateCustomer,
+  deleteCustomer,
 };

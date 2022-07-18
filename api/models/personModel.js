@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Person = sequelize.define(
-    "person",
+    "persons",
     {
       UserId: {
         type: DataTypes.INTEGER,
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       TelephoneNo: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           notEmpty: true,
@@ -61,28 +61,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-
-  //relationship between person and project
-  Person.associate = (models) => {
-    Person.hasMany(models.project, {
-      foreignKey: "AdministratorId",
-      onDelete: "CASCADE",
-    });
-    //relationship between person and team
-    Person.hasMany(models.teamMember, {
-      foreignKey: "UserId",
-      onDelete: "CASCADE",
-    });
-    Person.hasMany(models.team, {
-      foreignKey: "TeamLeaderId",
-      onDelete: "CASCADE",
-    });
-    //relationship between person and subtask
-    Person.hasMany(models.subTask, {
-      foreignKey: "TeamMemberId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return Person;
 };

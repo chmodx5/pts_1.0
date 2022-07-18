@@ -1,8 +1,6 @@
-const { BelongsTo } = require("sequelize/types");
-
 module.exports = (sequelize, DataTypes) => {
   const TeamMember = sequelize.define(
-    "teamMember",
+    "teamMembers",
     {
       UserId: {
         type: DataTypes.INTEGER,
@@ -21,18 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-
-  TeamMember.associate = (models) => {
-    TeamMember.belongsTo(models.team, {
-      foreignKey: "TeamId",
-
-      onDelete: "CASCADE",
-    });
-    TeamMember.belongsTo(models.person, {
-      foreignKey: "UserId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return TeamMember;
 };

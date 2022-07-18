@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Customer = sequelize.define(
-    "customer",
+    "customers",
     {
       CustomerId: {
         type: DataTypes.INTEGER,
-        primaryKey: true2,
+        primaryKey: true,
         autoIncrement: true,
       },
       Name: {
@@ -69,12 +69,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  //realtionshio customerId belongs to project is
-  Customer.associate = function (models) {
-    Customer.hasMany(models.project, {
-      foreignKey: "CustomerId",
-    });
-  };
-
-  return Category;
+  return Customer;
 };

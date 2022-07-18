@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const SubTask = sequelize.define(
-    "subTask",
+    "subTasks",
     {
       SubtaskId: {
         type: DataTypes.INTEGER,
@@ -15,28 +15,28 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       StatusId: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: true,
         },
       },
       PercentCompleted: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           notEmpty: true,
         },
       },
       TaskId: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: true,
         },
       },
       TeamMemberId: {
-        type: DataTypes.INT,
+        type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           notEmpty: true,
@@ -47,21 +47,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-
-  SubTask.associate = (models) => {
-    SubTask.belongsTo(models.task, {
-      foreignKey: "TaskId",
-      onDelete: "CASCADE",
-    });
-    SubTask.belongsTo(models.teamMember, {
-      foreignKey: "TeamMemberId",
-      onDelete: "CASCADE",
-    });
-    SubTask.belongsTo(models.status, {
-      foreignKey: "StatusId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return SubTask;
 };

@@ -20,16 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Status.associate = (models) => {
-    Status.hasMany(models.task, {
-      foreignKey: "StatusId",
-      onDelete: "CASCADE",
-    });
-    Status.hasMany(models.subtask, {
-      foreignKey: "StatusId",
-      onDelete: "CASCADE",
-    });
-  };
-
   return Status;
 };

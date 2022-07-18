@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Predecessor = sequelize.define(
-    "predecessor",
+    "predecessors",
     {
       TaskId: {
         type: DataTypes.INTEGER,
@@ -19,18 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  //belongs to task
-  Predecessor.associate = (models) => {
-    Predecessor.belongsTo(models.task, {
-      foreignKey: "TaskId",
-      onDelete: "CASCADE",
-    });
-    //belongs to predecessor
-    Predecessor.belongsTo(models.task, {
-      foreignKey: "PredecessorId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return Predecessor;
 };
