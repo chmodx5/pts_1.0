@@ -1,0 +1,7 @@
+/api/node_modules
+/reactclient/node_modules
+
+/api/yarn.lock
+/reactclient/yarn.lock
+
+
