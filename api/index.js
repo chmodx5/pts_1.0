@@ -11,7 +11,7 @@ app.use("/api/customer/", customerRoutes);
 const personRoutes = require("./routes/personRoutes.js");
 app.use("/api/customer/", personRoutes);
 const projectRoutes = require("./routes/projectRoutes.js");
-app.use("/api/project/", projectRoutes);
+app.use("/api/projects/", projectRoutes);
 const subtaskRoutes = require("./routes/subtasksRoutes.js");
 app.use("/api/subtask/", subtaskRoutes);
 const tasksRoutes = require("./routes/tasksRoutes.js");

@@ -21,8 +21,8 @@ const createProject = async (req, res) => {
 
 //get all products
 const getAllProjects = async (req, res) => {
-  //   const products = await Product.findAll();
-  res.json({ message: "All products" });
+  let project = await Project.findAll({});
+  res.json(project);
 };
 
 //get product by id
