@@ -15,7 +15,7 @@ const createProject = async (req, res) => {
     AdministratorId: req.body.AdministratorId,
   };
   const project = await Project.create(projectToBeCreated);
-
+  // console.log(req.body);
   res.json(project);
 };
 

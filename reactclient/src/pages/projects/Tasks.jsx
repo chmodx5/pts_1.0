@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Button from "../../components/styled/Button";
 import Card from "../../components/styled/Card";
 import TextInput from "../../components/styled/TextInput";
@@ -13,6 +14,19 @@ const Tasks = () => {
     expectedEnd: "",
     customer: "",
   });
+
+  //when the page loads we fetch the projects list
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/projects")
+      .then((res) => {
+        console.log(res.data);
+        setSelectedProject(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const addNewTask = () => {
     console.log("add new task");

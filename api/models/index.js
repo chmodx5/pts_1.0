@@ -64,14 +64,14 @@ db.project.belongsTo(db.customer, {
 
 //relationship between person and project
 
-db.person.hasMany(db.project, {
-  foreignKey: "AdministratorId",
-  onDelete: "CASCADE",
-});
-db.project.belongsTo(db.person, {
-  foreignKey: "UserId",
-  onDelete: "CASCADE",
-});
+// db.person.hasMany(db.project, {
+//   foreignKey: "AdministratorId",
+//   onDelete: "CASCADE",
+// });
+// db.project.belongsTo(db.person, {
+//   foreignKey: "AdministratorId",
+//   onDelete: "CASCADE",
+// });
 
 db.person.hasMany(db.teamMember, {
   foreignKey: "UserId",

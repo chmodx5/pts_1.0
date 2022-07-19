@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Auth/Login";
 import NewProject from "./pages/projects/NewProject";
 import Tasks from "./pages/projects/Tasks";
+import Projects from "./pages/projects/Projects";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<Login />} />
         <Route path="/newproject" element={<NewProject />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/projects" element={<Projects />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

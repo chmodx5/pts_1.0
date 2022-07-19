@@ -1,15 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const PORT = 5000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const customerRoutes = require("./routes/customerRoutes.js");
-app.use("/api/customer/", customerRoutes);
+app.use("/api/customers/", customerRoutes);
 const personRoutes = require("./routes/personRoutes.js");
-app.use("/api/customer/", personRoutes);
+app.use("/api/person/", personRoutes);
 const projectRoutes = require("./routes/projectRoutes.js");
 app.use("/api/projects/", projectRoutes);
 const subtaskRoutes = require("./routes/subtasksRoutes.js");

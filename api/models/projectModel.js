@@ -10,58 +10,34 @@ module.exports = (sequelize, DataTypes) => {
       Name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
       },
       ExpectedStartDate: {
         type: DataTypes.DATE,
         allowNull: true,
-        validate: {
-          notEmpty: true,
-        },
       },
       ExpectedEndDate: {
         type: DataTypes.DATE,
         allowNull: true,
-        validate: {
-          notEmpty: true,
-        },
       },
       ActualStartDate: {
         type: DataTypes.DATE,
         allowNull: true,
-        validate: {
-          notEmpty: true,
-        },
       },
       ActualEndDate: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-          notEmpty: true,
-        },
       },
       Completed: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
-        validate: {
-          notEmpty: true,
-        },
       },
       CustomerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
       },
       AdministratorId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
+        allowNull: true,
       },
     },
     {
