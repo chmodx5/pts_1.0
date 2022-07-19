@@ -26,5 +26,5 @@ app.use("/api/team/", teamRoutes);
 app.get("/", (req, res) => res.send("Welcome to the Users API!"));
 
 app.listen(PORT, () =>
-  console.log(`Server running on port: http://localhost:${PORT}`)
+  console.log(`Server walking on port: http://localhost:${PORT}`)
 );

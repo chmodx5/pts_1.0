@@ -42,7 +42,9 @@ const NewProject = () => {
         CustomerId: customerId,
       })
       .then((res) => {
-        navigate("/projects", { state: { project: res.data } });
+        navigate(`/projects/${res.data.ProjectId}`, {
+          state: { project: res.data },
+        });
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Button from "../../components/styled/Button";
 import Card from "../../components/styled/Card";
@@ -22,7 +23,7 @@ const Projects = () => {
   return (
     <div>
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-        <div className="p-10 xs:p-0 mx-auto space-y-4 md:w-full md:max-w-md">
+        <div className="p-10 xs:p-0 mx-auto space-y-4 md:w-full md:max-w-xl">
           <h1 className="font-bold text-center text-2xl mb-5">All Projects</h1>
           {projects &&
             projects.map((project) => {
@@ -39,6 +40,11 @@ const Projects = () => {
                       {moment(project.ExpectedEndDate).format("MMM Do YY")}
                     </p>
                     <p>customer id : {project.CustomerId}</p>
+                  </div>
+                  <div className="px-6 py-4">
+                    <Link to={`/projects/${project.ProjectId}`}>
+                      <Button>View Project</Button>
+                    </Link>
                   </div>
                 </Card>
               );

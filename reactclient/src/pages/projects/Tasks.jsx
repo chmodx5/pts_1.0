@@ -7,28 +7,61 @@ import SelectInput from "../../components/styled/SelectInput";
 import InputLabel from "../../components/styled/InputLabel";
 
 const Tasks = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [projects, setProjects] = useState([]);
   const [task, SetTask] = useState({
     name: "",
     expectedStart: "",
     expectedEnd: "",
     customer: "",
   });
+  const [selectedProject, setSelectedProject] = useState("");
+  const [customers, setCustomers] = useState([]);
 
   //when the page loads we fetch the projects list
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/projects")
       .then((res) => {
-        console.log(res.data);
-        setSelectedProject(res.data[0]);
+        setProjects(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const addNewTask = () => {
+  //get all customers loads when the page loads
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/customers")
+      .then((res) => {
+        setCustomers(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  //  adding a new service
+
+  const addNewTask = (e) => {
+    //prevent the page from refreshing
+    e.preventDefault();
+    //post the new task to the server
+    axios
+      .post("http://localhost:5000/api/tasks", {
+        Name: task.name,
+        ExpectedStart: task.expectedStart,
+        ExpectedEnd: task.expectedEnd,
+        Customer: task.customer,
+        Project: selectedProject,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     console.log("add new task");
   };
   return (
@@ -39,7 +72,7 @@ const Tasks = () => {
           <Card className=" divide-gray-200">
             <div className="px-5 py-7">
               {/* dropdown */}
-              <InputLabel>Select Project{selectedProject}</InputLabel>
+              <InputLabel>Select Project</InputLabel>
               <SelectInput
                 type="select"
                 onChange={(e) => {
@@ -47,15 +80,30 @@ const Tasks = () => {
                 }}
               >
                 <option value="">select project</option>
-                <option value="1">Huan</option>
-                <option value="2">Pablo</option>
+                {/* check if the projects list is empty */}
+                {projects &&
+                  projects.map((project) => (
+                    <option key={project.ProjectId} value={project.ProjectId}>
+                      {project.Name}
+                    </option>
+                  ))}
               </SelectInput>
             </div>
           </Card>
           <br />
 
+          <h1 className="font-bold text-center text-2xl mb-5">
+            {projects &&
+              projects.map((project) => (
+                <span key={project.ProjectId}>
+                  {project.ProjectId.toString() == selectedProject.toString() &&
+                    project.Name}
+                </span>
+              ))}
+          </h1>
+
           <Card className=" divide-gray-200">
-            {task.expectedStart} ooioioioo
+            {task.expectedStart}
             <form onSubmit={addNewTask}>
               <div className="px-5 py-7">
                 <InputLabel>Name</InputLabel>
@@ -82,9 +130,22 @@ const Tasks = () => {
 
                 {/* dropdown */}
                 <InputLabel>Customer</InputLabel>
-                <SelectInput type="select">
-                  <option value="1">Huan</option>
-                  <option value="1">Pablo</option>
+                <SelectInput
+                  onChange={(e) => {
+                    SetTask({ ...task, customer: e.target.value });
+                  }}
+                  type="select"
+                >
+                  <option value="">Select Customer</option>
+                  {customers &&
+                    customers.map((customer) => (
+                      <option
+                        key={customer.CustomerId}
+                        value={customer.CustomerId}
+                      >
+                        {customer.Name}
+                      </option>
+                    ))}
                 </SelectInput>
 
                 <Button type="submit">
