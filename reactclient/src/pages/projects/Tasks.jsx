@@ -65,111 +65,104 @@ const Tasks = () => {
     console.log("add new task");
   };
   return (
-    <div>
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-        <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-          <h1 className="font-bold text-center text-2xl mb-5">New Task</h1>
-          <Card className=" divide-gray-200">
-            <div className="px-5 py-7">
-              {/* dropdown */}
-              <InputLabel>Select Project</InputLabel>
-              <SelectInput
-                type="select"
-                onChange={(e) => {
-                  setSelectedProject(e.target.value);
-                }}
-              >
-                <option value="">select project</option>
-                {/* check if the projects list is empty */}
-                {projects &&
-                  projects.map((project) => (
-                    <option key={project.ProjectId} value={project.ProjectId}>
-                      {project.Name}
-                    </option>
-                  ))}
-              </SelectInput>
-            </div>
-          </Card>
-          <br />
-
-          <h1 className="font-bold text-center text-2xl mb-5">
+    <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+      <h1 className="font-bold text-center text-2xl mb-5">New Task</h1>
+      <Card className=" divide-gray-200">
+        <div className="px-5 py-7">
+          {/* dropdown */}
+          <InputLabel>Select Project</InputLabel>
+          <SelectInput
+            type="select"
+            onChange={(e) => {
+              setSelectedProject(e.target.value);
+            }}
+          >
+            <option value="">select project</option>
+            {/* check if the projects list is empty */}
             {projects &&
               projects.map((project) => (
-                <span key={project.ProjectId}>
-                  {project.ProjectId.toString() == selectedProject.toString() &&
-                    project.Name}
-                </span>
+                <option key={project.ProjectId} value={project.ProjectId}>
+                  {project.Name}
+                </option>
               ))}
-          </h1>
-
-          <Card className=" divide-gray-200">
-            {task.expectedStart}
-            <form onSubmit={addNewTask}>
-              <div className="px-5 py-7">
-                <InputLabel>Name</InputLabel>
-                <TextInput
-                  onChange={(e) => {
-                    SetTask({ ...task, name: e.target.value });
-                  }}
-                  type="text"
-                />
-                <InputLabel>Expected Start</InputLabel>
-                <TextInput
-                  onChange={(e) => {
-                    SetTask({ ...task, expectedStart: e.target.value });
-                  }}
-                  type="date"
-                />
-                <InputLabel>Expected End</InputLabel>
-                <TextInput
-                  onChange={(e) => {
-                    SetTask({ ...task, expectedEnd: e.target.value });
-                  }}
-                  type="date"
-                />
-
-                {/* dropdown */}
-                <InputLabel>Customer</InputLabel>
-                <SelectInput
-                  onChange={(e) => {
-                    SetTask({ ...task, customer: e.target.value });
-                  }}
-                  type="select"
-                >
-                  <option value="">Select Customer</option>
-                  {customers &&
-                    customers.map((customer) => (
-                      <option
-                        key={customer.CustomerId}
-                        value={customer.CustomerId}
-                      >
-                        {customer.Name}
-                      </option>
-                    ))}
-                </SelectInput>
-
-                <Button type="submit">
-                  <span className="inline-block mr-2">Create</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="w-4 h-4 inline-block"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Button>
-              </div>
-            </form>
-          </Card>
+          </SelectInput>
         </div>
-      </div>
+      </Card>
+      <br />
+
+      <h1 className="font-bold text-center text-2xl mb-5">
+        {projects &&
+          projects.map((project) => (
+            <span key={project.ProjectId}>
+              {project.ProjectId.toString() == selectedProject.toString() &&
+                project.Name}
+            </span>
+          ))}
+      </h1>
+
+      <Card className=" divide-gray-200">
+        {task.expectedStart}
+        <form onSubmit={addNewTask}>
+          <div className="px-5 py-7">
+            <InputLabel>Name</InputLabel>
+            <TextInput
+              onChange={(e) => {
+                SetTask({ ...task, name: e.target.value });
+              }}
+              type="text"
+            />
+            <InputLabel>Expected Start</InputLabel>
+            <TextInput
+              onChange={(e) => {
+                SetTask({ ...task, expectedStart: e.target.value });
+              }}
+              type="date"
+            />
+            <InputLabel>Expected End</InputLabel>
+            <TextInput
+              onChange={(e) => {
+                SetTask({ ...task, expectedEnd: e.target.value });
+              }}
+              type="date"
+            />
+
+            {/* dropdown */}
+            <InputLabel>Customer</InputLabel>
+            <SelectInput
+              onChange={(e) => {
+                SetTask({ ...task, customer: e.target.value });
+              }}
+              type="select"
+            >
+              <option value="">Select Customer</option>
+              {customers &&
+                customers.map((customer) => (
+                  <option key={customer.CustomerId} value={customer.CustomerId}>
+                    {customer.Name}
+                  </option>
+                ))}
+            </SelectInput>
+
+            <Button type="submit">
+              <span className="inline-block mr-2">Create</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-4 h-4 inline-block"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Button>
+          </div>
+        </form>
+      </Card>
     </div>
   );
 };

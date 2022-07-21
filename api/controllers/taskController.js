@@ -22,7 +22,8 @@ const createTask = async (req, res) => {
 
 //get all Tasks
 const getAllTasks = async (req, res) => {
-  res.json({ message: "All Tasks" });
+  let tasks = await Task.findAll();
+  res.json(tasks);
 };
 
 //get Task by id

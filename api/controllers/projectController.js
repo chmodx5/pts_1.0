@@ -28,7 +28,7 @@ const getAllProjects = async (req, res) => {
 //get product by id
 const getProjectById = async (req, res) => {
   let id = req.params.id;
-  let project = await Project.findOne({ where: { id: id } });
+  let project = await Project.findOne({ where: { ProjectId: id } });
   res.json(project);
 };
 

@@ -1,20 +1,44 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Card from "../../components/styled/Card";
+import axios from "axios";
 
 const SingleProject = () => {
+  const [project, setProject] = useState({});
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/projects/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setProject(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-      <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-        <h1 className="font-bold text-center text-2xl mb-5">New Project</h1>
-        <Card className=" divide-gray-200">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-            temporibus ducimus ut itaque dolores repellendus, ipsum id voluptas
-            molestias pariatur esse minima dolore beatae ad adipisci earum
-            possimus vero accusantium?
-          </p>
-        </Card>
-      </div>
+    <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl">
+      <h1 className="font-bold text-center text-2xl mb-5 capitalize">
+        {project.Name}
+      </h1>
+      <Card className=" divide-gray-200">
+        <div className="px-5 py-7">
+          <h1>{project.Name} - Tasks</h1>
+        </div>
+        <div className="px-6 py-4 grid grid-cols-2">
+          <div className="">
+            <h3>Add task</h3>
+            <ul>
+              <li>tasks</li>
+            </ul>
+          </div>
+          <div>
+            <h3>All Tasks</h3>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 };
