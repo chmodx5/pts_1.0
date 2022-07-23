@@ -22,7 +22,17 @@ const createTask = async (req, res) => {
 
 //get all Tasks
 const getAllTasks = async (req, res) => {
-  let tasks = await Task.findAll();
+  let tasks = await Task.findAll({
+    include: [
+      //innclude the status
+      { model: db.status },
+      //include the project
+      { model: db.project },
+
+      //include the team
+      { model: db.team },
+    ],
+  });
   res.json(tasks);
 };
 

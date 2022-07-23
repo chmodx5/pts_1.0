@@ -19,7 +19,7 @@ app.use("/api/subtask/", subtaskRoutes);
 const tasksRoutes = require("./routes/tasksRoutes.js");
 app.use("/api/tasks/", tasksRoutes);
 const teamRoutes = require("./routes/teamRoutes.js");
-app.use("/api/team/", teamRoutes);
+app.use("/api/teams/", teamRoutes);
 
 //we can also use const router = require("./routes/productRoutes") but that means alll routes will not get the /product prefix
 

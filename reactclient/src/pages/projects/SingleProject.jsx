@@ -62,9 +62,12 @@ export default function SingleProject() {
   return (
     <div className="w-full">
       <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl">
+        <h1 className="font-bold text-center text-2xl mb-5 capitalize">
+          {project.Name}
+        </h1>
         <Card className=" divide-gray-200 ">
           <div className="px-5 py-7">
-            <h1>{project.Name} - Tasks</h1>
+            {/* <h1>{project.Name} - Tasks</h1> */}
             <SelectedProjectDetails project={project} />
           </div>
           <div className="px-6 py-4 ">
